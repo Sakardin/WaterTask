@@ -4,7 +4,7 @@ import java.util.*;
 public class WaterTask {
 
     public static void main(String[] args) {
-        int a[] = {10, 10, 2, 3, 4, 5, 3, 200, 1, 4, 5, 1, 540, 2, 6, 20, 10};
+        int a[] = {1000, 10, 2, 3, 4, 5, 3, 200, 1, 4, 5, 1, 5400, 2, 6, 20, 10};
 
         System.out.println(calculateDeepestHole(a));
     }
@@ -23,26 +23,30 @@ public class WaterTask {
             if (a[left] >= leftMax) {
                 leftMax = a[left];
                 leftPos = left;
-
             }
 
             if (a[right] >= rightMax) {
                 rightMax = a[right];
                 rightPos = right;
-
-            }			if(leftMax >= rightMax) {
+            }
+            if(leftMax >= rightMax) {
                 right--;
-        }else left++;}
+            }
+
+             else left++;
+        }
+
         System.out.println(leftMax + " " + leftPos + " " + rightMax + " " + rightPos);
-        if(leftMax <= rightMax){
+
+        if(rightMax >= leftMax){
             for(int i = leftPos+1; i< rightPos;i++){
                 if(deep < leftMax - a[i]){
                     deep = leftMax - a[i];
                 }
             }
         }
-        else if (rightMax< leftMax){
-            for(int i = rightPos; i> leftPos;i--){
+        else if (leftMax > rightMax){
+            for(int i = rightPos-1; i> leftPos;i--){
             if(deep < rightMax - a[i]){
                 deep = rightMax - a[i];
                 }

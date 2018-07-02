@@ -4,7 +4,7 @@ import java.util.*;
 public class WaterTask {
 
     public static void main(String[] args) {
-        int a[] = {1000, 10, 2, 3, 4, 5, 3, 200, 1, 4, 5, 1, 5400, 2, 6, 20, 10};
+        int a[] = {10, 10, 2, 3, 4, 5, 3, 20, 1, 14, 5, 10, 54, 2, 6, 20, 10};
 
         System.out.println(calculateDeepestHole(a));
     }
@@ -19,17 +19,17 @@ public class WaterTask {
         int leftPos = 0;
         int rightPos = 0;
 
-        while (left < right){
-            if (a[left] >= leftMax) {
+        while (left < right){ //ищем берега
+            if (a[left] >= leftMax) {  // если левый берег выше берем его
                 leftMax = a[left];
-                leftPos = left;
+                leftPos = left;  // и запоминаем позицию левого берега
             }
 
-            if (a[right] >= rightMax) {
+            if (a[right] >= rightMax) { // если правый выше берем его
                 rightMax = a[right];
-                rightPos = right;
+                rightPos = right;  // и его позицию
             }
-            if(leftMax >= rightMax) {
+            if(leftMax >= rightMax) { // если левый больше правого смещаем
                 right--;
             }
 
@@ -38,14 +38,14 @@ public class WaterTask {
 
         System.out.println(leftMax + " " + leftPos + " " + rightMax + " " + rightPos);
 
-        if(rightMax >= leftMax){
+        if(rightMax >= leftMax){  // если правый больше левого берега ищем глубину от левого берега
             for(int i = leftPos+1; i< rightPos;i++){
                 if(deep < leftMax - a[i]){
                     deep = leftMax - a[i];
                 }
             }
         }
-        else if (leftMax > rightMax){
+        else if (leftMax > rightMax){  // если левый больше правого ищем глубину от правого
             for(int i = rightPos-1; i> leftPos;i--){
             if(deep < rightMax - a[i]){
                 deep = rightMax - a[i];
